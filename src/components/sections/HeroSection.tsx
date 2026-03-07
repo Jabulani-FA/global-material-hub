@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
 import { ArrowRight } from "lucide-react";
-import HeroSecDiv from "@/assets/section-dividers/hero-sec-wave.svg";
+
 
 const HeroSection = () => {
   return (

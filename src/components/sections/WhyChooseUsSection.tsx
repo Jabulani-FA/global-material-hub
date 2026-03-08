@@ -1,5 +1,8 @@
 import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import AnimatedSection from "@/components/AnimatedSection";
+import StaggerChildren, { staggerItem } from "@/components/StaggerChildren";
 
 const reasons = [
   "Trusted global sourcing from verified suppliers",
@@ -15,7 +18,7 @@ const WhyChooseUsSection = () => {
     <section className="section-padding bg-secondary">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
+          <AnimatedSection direction="left">
             <p className="text-accent font-heading font-semibold text-sm tracking-[0.2em] uppercase mb-4">
               Why Choose Us
             </p>
@@ -25,19 +28,29 @@ const WhyChooseUsSection = () => {
             <p className="text-muted-foreground leading-relaxed mb-8">
               We provide more than materials — we deliver confidence. Our team ensures quality, consistency and on-time delivery for every order.
             </p>
-            <Button variant="accent" size="lg" asChild>
-              <a href="#contact">Partner With Us</a>
-            </Button>
-          </div>
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Button variant="accent" size="lg" asChild>
+                <a href="#contact">Partner With Us</a>
+              </Button>
+            </motion.div>
+          </AnimatedSection>
 
-          <div className="space-y-4">
+          <StaggerChildren className="space-y-4" staggerDelay={0.1}>
             {reasons.map((reason) => (
-              <div key={reason} className="flex items-start gap-4 bg-card rounded-lg p-5 border border-border">
+              <motion.div
+                key={reason}
+                variants={staggerItem}
+                whileHover={{ x: 8, transition: { duration: 0.2 } }}
+                className="flex items-start gap-4 bg-card rounded-lg p-5 border border-border"
+              >
                 <CheckCircle2 size={22} className="text-accent shrink-0 mt-0.5" />
                 <p className="font-medium text-foreground">{reason}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </StaggerChildren>
         </div>
       </div>
     </section>

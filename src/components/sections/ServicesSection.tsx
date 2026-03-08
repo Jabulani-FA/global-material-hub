@@ -1,4 +1,7 @@
 import { Globe, BarChart3, Truck, Warehouse, HeadphonesIcon, TestTube } from "lucide-react";
+import { motion } from "framer-motion";
+import AnimatedSection from "@/components/AnimatedSection";
+import StaggerChildren, { staggerItem } from "@/components/StaggerChildren";
 
 const services = [
   { icon: Globe, name: "Global Raw Material Sourcing", description: "Connecting manufacturers with reliable global suppliers of raw materials and industrial chemicals." },
@@ -13,7 +16,7 @@ const ServicesSection = () => {
   return (
     <section id="services" className="section-padding section-dark">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <AnimatedSection className="text-center mb-16">
           <p className="text-accent font-heading font-semibold text-sm tracking-[0.2em] uppercase mb-4">
             Our Services
           </p>
@@ -23,20 +26,26 @@ const ServicesSection = () => {
           <p className="text-surface-dark-foreground/60 max-w-2xl mx-auto">
             From sourcing to delivery, we manage every step of the supply chain.
           </p>
-        </div>
+        </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <StaggerChildren className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.1}>
           {services.map(({ icon: Icon, name, description }) => (
-            <div
+            <motion.div
               key={name}
-              className="rounded-lg p-8 border border-surface-dark-foreground/10 hover:border-accent/30 transition-all group bg-surface-dark-foreground/5"
+              variants={staggerItem}
+              whileHover={{ y: -8, transition: { duration: 0.25 } }}
+              className="rounded-lg p-8 border border-surface-dark-foreground/10 hover:border-accent/30 transition-shadow group bg-surface-dark-foreground/5"
             >
-              <Icon size={28} className="text-accent mb-5" />
+              <motion.div
+                whileHover={{ rotate: [0, -10, 10, 0], transition: { duration: 0.5 } }}
+              >
+                <Icon size={28} className="text-accent mb-5" />
+              </motion.div>
               <h3 className="font-heading font-semibold text-lg mb-2">{name}</h3>
               <p className="text-surface-dark-foreground/60 text-sm leading-relaxed">{description}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </StaggerChildren>
       </div>
     </section>
   );

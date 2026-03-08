@@ -1,13 +1,15 @@
+import { Suspense } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
 import { ArrowRight } from "lucide-react";
-
+import HeroGlobe from "@/components/HeroGlobe";
 
 const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Background */}
       <div className="absolute inset-0">
@@ -16,47 +18,69 @@ const HeroSection = () => {
           alt="Industrial minerals and raw materials"
           className="w-full h-full object-cover"
         />
-
         <div className="absolute inset-0 bg-gradient-to-r from-surface-dark/95 via-surface-dark/80 to-surface-dark/60" />
-
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 w-full pt-24">
-        <div className="max-w-3xl">
-          <p className="text-accent font-heading font-semibold text-sm tracking-[0.3em] uppercase mb-6 animate-fade-up">
-            Global Raw Material Solutions
-          </p>
-          <h1
-            className="font-heading text-4xl md:text-5xl lg:text-7xl font-bold text-surface-dark-foreground leading-[1.1] mb-6 animate-fade-up"
-            style={{ animationDelay: "0.1s" }}
-          >
-            Powering Industries with{" "}
-            <span className="text-gradient-accent">Premium Raw Materials</span>
-          </h1>
-          <p
-            className="text-lg md:text-xl text-surface-dark-foreground/70 max-w-xl mb-10 animate-fade-up"
-            style={{ animationDelay: "0.2s" }}
-          >
-            Reliable sourcing, global distribution and supply chain expertise
-            for industrial chemicals, minerals and specialty materials.
-          </p>
-          <div
-            className="flex flex-wrap gap-4 animate-fade-up"
-            style={{ animationDelay: "0.3s" }}
-          >
-            <Button variant="accent" size="lg" asChild>
-              <a href="#products">
-                Explore Products <ArrowRight size={18} />
-              </a>
-            </Button>
-            <Button variant="hero" size="lg" asChild>
-              <a href="#contact">Contact Us</a>
-            </Button>
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-accent font-heading font-semibold text-sm tracking-[0.3em] uppercase mb-6"
+            >
+              Global Raw Material Solutions
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.35 }}
+              className="font-heading text-4xl md:text-5xl lg:text-7xl font-bold text-surface-dark-foreground leading-[1.1] mb-6"
+            >
+              Powering Industries with{" "}
+              <span className="text-gradient-accent">Premium Raw Materials</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-lg md:text-xl text-surface-dark-foreground/70 max-w-xl mb-10"
+            >
+              Reliable sourcing, global distribution and supply chain expertise
+              for industrial chemicals, minerals and specialty materials.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.65 }}
+              className="flex flex-wrap gap-4"
+            >
+              <Button variant="accent" size="lg" asChild>
+                <a href="#products">
+                  Explore Products <ArrowRight size={18} />
+                </a>
+              </Button>
+              <Button variant="hero" size="lg" asChild>
+                <a href="#contact">Contact Us</a>
+              </Button>
+            </motion.div>
           </div>
+
+          {/* 3D Globe */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
+            className="hidden lg:block h-[500px]"
+          >
+            <Suspense fallback={<div className="w-full h-full" />}>
+              <HeroGlobe />
+            </Suspense>
+          </motion.div>
         </div>
       </div>
-
     </section>
   );
 };

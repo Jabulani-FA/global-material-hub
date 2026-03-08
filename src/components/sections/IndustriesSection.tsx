@@ -1,4 +1,7 @@
 import { Building2, Fuel, Paintbrush, Layers, Factory, Tractor, Droplets, GlassWater, Hammer, FlaskConical } from "lucide-react";
+import { motion } from "framer-motion";
+import AnimatedSection from "@/components/AnimatedSection";
+import StaggerChildren, { staggerItem } from "@/components/StaggerChildren";
 
 const industries = [
   { icon: Building2, name: "Construction & Building" },
@@ -17,7 +20,7 @@ const IndustriesSection = () => {
   return (
     <section id="industries" className="section-padding bg-secondary">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <AnimatedSection className="text-center mb-16">
           <p className="text-accent font-heading font-semibold text-sm tracking-[0.2em] uppercase mb-4">
             Industries Served
           </p>
@@ -27,21 +30,23 @@ const IndustriesSection = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             From construction to water treatment, we deliver industrial-grade raw materials to the sectors that keep the world running.
           </p>
-        </div>
+        </AnimatedSection>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        <StaggerChildren className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
           {industries.map(({ icon: Icon, name }) => (
-            <div
+            <motion.div
               key={name}
-              className="bg-card rounded-lg p-6 text-center border border-border hover:border-accent/50 hover:shadow-md transition-all group"
+              variants={staggerItem}
+              whileHover={{ y: -6, transition: { duration: 0.2 } }}
+              className="bg-card rounded-lg p-6 text-center border border-border hover:border-accent/50 hover:shadow-md transition-shadow group cursor-default"
             >
               <div className="w-12 h-12 rounded-md bg-accent/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-accent/20 transition-colors">
                 <Icon size={24} className="text-accent" />
               </div>
               <p className="text-sm font-medium text-foreground">{name}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </StaggerChildren>
       </div>
     </section>
   );

@@ -2,12 +2,14 @@ import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { motion } from "framer-motion";
+import AnimatedSection from "@/components/AnimatedSection";
 
 const ContactSection = () => {
   return (
     <section id="contact" className="section-padding section-dark">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <AnimatedSection className="text-center mb-16">
           <p className="text-accent font-heading font-semibold text-sm tracking-[0.2em] uppercase mb-4">
             Get In Touch
           </p>
@@ -17,52 +19,49 @@ const ContactSection = () => {
           <p className="text-surface-dark-foreground/60 max-w-2xl mx-auto">
             Reach out for quotes, product inquiries or partnership opportunities.
           </p>
-        </div>
+        </AnimatedSection>
 
         <div className="grid lg:grid-cols-5 gap-12">
-          {/* Contact Info */}
-          <div className="lg:col-span-2 space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-md gradient-accent flex items-center justify-center shrink-0">
-                <Mail size={18} className="text-primary-foreground" />
-              </div>
-              <div>
-                <h4 className="font-heading font-semibold mb-1">Email</h4>
-                <p className="text-surface-dark-foreground/60 text-sm">info@mayriadsoryktos.com</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-md gradient-accent flex items-center justify-center shrink-0">
-                <Phone size={18} className="text-primary-foreground" />
-              </div>
-              <div>
-                <h4 className="font-heading font-semibold mb-1">Phone</h4>
-                <p className="text-surface-dark-foreground/60 text-sm">+0000000000</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-md gradient-accent flex items-center justify-center shrink-0">
-                <MapPin size={18} className="text-primary-foreground" />
-              </div>
-              <div>
-                <h4 className="font-heading font-semibold mb-1">Address</h4>
-                <p className="text-surface-dark-foreground/60 text-sm">Global Headquarters – To Be Announced</p>
-              </div>
-            </div>
-          </div>
+          <AnimatedSection direction="left" className="lg:col-span-2 space-y-6">
+            {[
+              { icon: Mail, title: "Email", text: "info@mayriadsoryktos.com" },
+              { icon: Phone, title: "Phone", text: "+0000000000" },
+              { icon: MapPin, title: "Address", text: "Global Headquarters – To Be Announced" },
+            ].map(({ icon: Icon, title, text }, i) => (
+              <motion.div
+                key={title}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.15 * i }}
+                className="flex items-start gap-4"
+              >
+                <div className="w-10 h-10 rounded-md gradient-accent flex items-center justify-center shrink-0">
+                  <Icon size={18} className="text-primary-foreground" />
+                </div>
+                <div>
+                  <h4 className="font-heading font-semibold mb-1">{title}</h4>
+                  <p className="text-surface-dark-foreground/60 text-sm">{text}</p>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatedSection>
 
-          {/* Form */}
-          <form className="lg:col-span-3 space-y-4" onSubmit={(e) => e.preventDefault()}>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <Input placeholder="Your Name" className="bg-surface-dark-foreground/5 border-surface-dark-foreground/10 text-surface-dark-foreground placeholder:text-surface-dark-foreground/30" />
-              <Input type="email" placeholder="Your Email" className="bg-surface-dark-foreground/5 border-surface-dark-foreground/10 text-surface-dark-foreground placeholder:text-surface-dark-foreground/30" />
-            </div>
-            <Input placeholder="Subject" className="bg-surface-dark-foreground/5 border-surface-dark-foreground/10 text-surface-dark-foreground placeholder:text-surface-dark-foreground/30" />
-            <Textarea placeholder="Your Message" rows={5} className="bg-surface-dark-foreground/5 border-surface-dark-foreground/10 text-surface-dark-foreground placeholder:text-surface-dark-foreground/30 resize-none" />
-            <Button variant="accent" size="lg" type="submit" className="w-full sm:w-auto">
-              Send Message <Send size={18} />
-            </Button>
-          </form>
+          <AnimatedSection direction="right" delay={0.2} className="lg:col-span-3">
+            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <Input placeholder="Your Name" className="bg-surface-dark-foreground/5 border-surface-dark-foreground/10 text-surface-dark-foreground placeholder:text-surface-dark-foreground/30" />
+                <Input type="email" placeholder="Your Email" className="bg-surface-dark-foreground/5 border-surface-dark-foreground/10 text-surface-dark-foreground placeholder:text-surface-dark-foreground/30" />
+              </div>
+              <Input placeholder="Subject" className="bg-surface-dark-foreground/5 border-surface-dark-foreground/10 text-surface-dark-foreground placeholder:text-surface-dark-foreground/30" />
+              <Textarea placeholder="Your Message" rows={5} className="bg-surface-dark-foreground/5 border-surface-dark-foreground/10 text-surface-dark-foreground placeholder:text-surface-dark-foreground/30 resize-none" />
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Button variant="accent" size="lg" type="submit" className="w-full sm:w-auto">
+                  Send Message <Send size={18} />
+                </Button>
+              </motion.div>
+            </form>
+          </AnimatedSection>
         </div>
       </div>
     </section>

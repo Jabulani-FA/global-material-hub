@@ -75,7 +75,7 @@ const ProductCategoryPage = () => {
       <Navbar />
 
       {/* Hero Banner */}
-      <section className="relative pt-24">
+      <section className="relative pt-[72px]">
         <div className="relative h-[340px] md:h-[420px] overflow-hidden">
           <img
             src={images[0]}

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import StaggerChildren, { staggerItem } from "@/components/StaggerChildren";
 import SectionBackground from "@/components/SectionBackground";
+import compositeImg from "@/assets/products/composite-1.jpg";
 
 const industries = [
   { icon: Building2, name: "Construction & Building" },
@@ -21,7 +22,10 @@ const IndustriesSection = () => {
   return (
     <SectionBackground
       pattern="bg-pattern-grid"
-      overlay="radial-gradient(ellipse at 50% 0%, hsl(38 92% 50% / 0.04) 0%, transparent 60%)"
+      imageSrc={compositeImg}
+      imageOpacity={0.04}
+      imagePosition="center"
+      overlay="linear-gradient(180deg, hsl(215 15% 92%) 0%, hsl(215 15% 92% / 0.93) 40%, hsl(215 15% 92%) 100%)"
       className="section-padding bg-secondary"
     >
       <section id="industries">

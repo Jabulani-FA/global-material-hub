@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import StaggerChildren, { staggerItem } from "@/components/StaggerChildren";
 import SectionBackground from "@/components/SectionBackground";
+import compositeImg from "@/assets/products/composite-1.jpg";
 
 const industries = [
   { icon: Building2, name: "Construction & Building" },

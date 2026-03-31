@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <img src={logo} alt="Mayriads Oryktos" className="h-40 w-auto mb-4" />
-            <p className="text-sm text-surface-dark-foreground/60 leading-relaxed">
+            <p className="text-sm text-dark leading-relaxed">
               A premier Nigerian industrial minerals and chemicals company, specializing in sourcing, processing, and distribution of high-quality mineral resources and industrial chemicals.
             </p>
           </div>
@@ -33,7 +33,7 @@ const Footer = () => {
             <h4 className="font-heading font-semibold mb-4 text-accent">Industries</h4>
             <ul className="space-y-2">
               {["Construction & Infrastructure", "Cement", "Oil & Gas", "Paints & Coatings", "Plastics & Polymers", "Ceramics & Refractories"].map((ind) => (
-                <li key={ind} className="text-sm text-surface-dark-foreground/60">{ind}</li>
+                <li key={ind} className="text-sm text-dark">{ind}</li>
               ))}
             </ul>
           </div>
@@ -59,7 +59,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-surface-dark-foreground/10 pt-8 text-center">
-          <p className="text-sm text-surface-dark-foreground/40">
+          <p className="text-sm text-dark">
             © {new Date().getFullYear()} Mayriads Oryktos. All rights reserved.
           </p>
         </div>
